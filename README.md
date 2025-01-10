@@ -5,14 +5,13 @@ Some hands-on labs done with Terraform.
 You will need 2 inputs
 
 - Credentials of Azure portal
-- Subscription-id: Once you've logged-in in Azure portal we can get in [Subscriptions](https://portal.azure.com/#view/Microsoft_Azure_Billing/SubscriptionsBladeV2) section.
 - Resource Group Name: We assume that there is already a resource group created for these labs.
 
 ### Get credentials
 Run the following command:
 
 ```bash
-export ARM_SUBSCRIPTION_ID="YOUR_ARM_SUBSCRIPTION_ID" && az login --username 'YOUR_USERNAME' --password 'YOUR_PASSWORD'
+export ARM_SUBSCRIPTION_ID=$(az login --username 'USERNAME' --password 'PASSWORD' | jq -r '.[0].id') && export TF_VAR_resource_group_name='RG_NAME'
 ```
 
 ### Terraform 
