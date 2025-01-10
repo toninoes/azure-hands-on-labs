@@ -6,7 +6,7 @@ You will need 2 inputs
 
 - Credentials of Azure portal
 - Subscription-id: Once you've logged-in in Azure portal we can get in [Subscriptions](https://portal.azure.com/#view/Microsoft_Azure_Billing/SubscriptionsBladeV2) section.
-- Resource Group Name
+- Resource Group Name: We assume that there is already a resource group created for these labs.
 
 ### Get credentials
 Run the following command:
