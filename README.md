@@ -50,10 +50,6 @@ This includes creating, modifying, or destroying resources.
 
 ```bash
 TF_WORKSPACE=sandbox terraform plan -var-file=sandbox.tfvars
-var.resource_group_name
-  Resource group where to deploy.
-
-  Enter a value: YOUR_RESOURCE_GROUP_HERE
 ```
 
 #### Apply
@@ -67,10 +63,6 @@ to match the desired state.
 
 ```bash
 TF_WORKSPACE=sandbox terraform apply -var-file=sandbox.tfvars
-var.resource_group_name
-  Resource group where to deploy.
-
-  Enter a value: YOUR_RESOURCE_GROUP_HERE
 ```
 
 #### Destroy
