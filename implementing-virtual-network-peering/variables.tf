@@ -4,9 +4,9 @@ variable "admin_username" {
   type        = string
 }
 
-variable "public_key_location" {
-  default = "~/.ssh/toninoes.pub"
-  description = "The Public Key which should be used for authentication, which needs to be in ssh-rsa format with at least 2048-bit or in ssh-ed25519 format. Changing this forces a new resource to be created."
+variable "ssh_key_pairs_name" {
+  default     = "toninoes"
+  description = "Name used to private SSH key."
   type        = string
 }
 

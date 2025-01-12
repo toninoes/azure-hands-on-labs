@@ -3,5 +3,5 @@ data "azurerm_resource_group" "this" {
 }
 
 data "external" "myipaddr" {
-    program = ["bash", "-c", "curl -s 'https://api.ipify.org?format=json'"]
+  program = ["bash", "-c", "curl -s 'https://api.ipify.org?format=json'"]
 }

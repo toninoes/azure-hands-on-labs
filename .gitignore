@@ -31,3 +31,7 @@ terraform.rc
 
 # IDE configuration files
 **/.idea/**
+
+# Ignore key pairs
+*.pem
+*.pub
