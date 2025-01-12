@@ -2,6 +2,8 @@
 In this lab we will walk through the steps to create two peered Virtual Networks, launching a VM in both Virtual Networks 
 and establishing a communication between both the VMs.
 
+![diagram](img/diagram.png)
+
 ## What is VNet Peering in Azure?
 
 * Azure VNet peering is a feature that allows for direct communication between two Azure Virtual Networks (VNets) in the 
