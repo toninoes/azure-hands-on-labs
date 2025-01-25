@@ -100,32 +100,24 @@ Connection to 172.211.22.219 closed.
 
 | Name | Version |
 |------|---------|
-| azurerm | 4.15.0 |
+| azurerm | 4.16.0 |
 | external | 2.3.4 |
-| local | 2.5.2 |
-| tls | 4.0.6 |
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| vm\_0 | git::git@github.com:toninoes/modulodromo.git//azure/virtual_machine | n/a |
+| vm\_1 | git::git@github.com:toninoes/modulodromo.git//azure/virtual_machine | n/a |
+| vnet\_0 | git::git@github.com:toninoes/modulodromo.git//azure/virtual_network | n/a |
+| vnet\_1 | git::git@github.com:toninoes/modulodromo.git//azure/virtual_network | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [azurerm_linux_virtual_machine.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine) | resource |
-| [azurerm_network_interface.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface) | resource |
-| [azurerm_network_interface_security_group_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association) | resource |
-| [azurerm_network_security_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
-| [azurerm_public_ip.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
-| [azurerm_subnet.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
-| [azurerm_virtual_network.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 | [azurerm_virtual_network_peering.vnet_0_to_vnet_1](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering) | resource |
 | [azurerm_virtual_network_peering.vnet_1_to_vnet_0](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network_peering) | resource |
-| [local_file.pem](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [local_file.pub](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [tls_private_key.this](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
-| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 | [external_external.myipaddr](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
 
 ## Inputs
@@ -134,7 +126,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | admin\_username | The username of the local administrator used for the Virtual Machine. Changing this forces a new resource to be created. | `string` | `"toninoes"` | no |
 | resource\_group\_name | Resource group where to deploy. | `string` | n/a | yes |
-| ssh\_key\_pairs\_name | Name used to private SSH key. | `string` | `"toninoes"` | no |
+| ssh\_key\_pairs\_name | Name used to create SSH key pairs. | `string` | `"toninoes"` | no |
 
 ## Outputs
 
@@ -145,3 +137,4 @@ No modules.
 | vm\_0\_testing\_connection\_to\_vm\_1 | PING command to test connectivity through peer connection to VM-1 |
 | vm\_1\_access | SSH command to access to VM-1 |
 | vm\_1\_testing\_connection\_to\_vm\_0 | PING command to test connectivity through peer connection to VM-0 |
+
