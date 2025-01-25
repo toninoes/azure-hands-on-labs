@@ -40,8 +40,8 @@ module "vnet_1" {
 resource "azurerm_virtual_network_peering" "vnet_0_to_vnet_1" {
   name                      = "peer-0-to-1"
   resource_group_name       = var.resource_group_name
-  virtual_network_name      = module.vnet_0.name #azurerm_virtual_network.this[0].name
-  remote_virtual_network_id = module.vnet_1.id   #azurerm_virtual_network.this[1].id
+  virtual_network_name      = module.vnet_0.name
+  remote_virtual_network_id = module.vnet_1.id
 }
 
 resource "azurerm_virtual_network_peering" "vnet_1_to_vnet_0" {
