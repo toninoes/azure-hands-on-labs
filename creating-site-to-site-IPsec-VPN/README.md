@@ -5,6 +5,8 @@ the Microsoft Azure cloud, allowing resources in both networks to communicate se
 
 ![diagram](img/diagram.png)
 
+We'll simulate our corporate network with another Vnet.
+
 ## What is a Site-to-Site VPN? 
 
 A Site-to-Site VPN (Virtual Private Network) is a connection that allows us to securely link two networks over the internet. 
@@ -27,7 +29,9 @@ TF_WORKSPACE=sandbox terraform init
 TF_WORKSPACE=sandbox terraform apply -var-file=sandbox.tfvars
 ```
 
-After apply, you will obtain the following outputs to test connectivity:
+It takes a long to apply configuration, because creating a gateway can often take 30 minutes or more.
+
+After that, you will obtain the following outputs to test connectivity between vm-0 and vm-onprem (which is simulating a server on your corporate network):
 ```bash
 Outputs:
 
