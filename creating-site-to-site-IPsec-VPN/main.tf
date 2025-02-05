@@ -30,74 +30,35 @@ module "onprem" {
   virtual_network_name             = "onprem"
 }
 
-resource "azurerm_local_network_gateway" "vnet_0" {
-  name                = "vnet-0"
-  resource_group_name = var.resource_group_name
-  location            = data.azurerm_resource_group.this.location
-  gateway_address     = module.vnet_0.public_ip_vpn_gateway
-  address_space       = module.vnet_0.address_space
+# VGW connections
+module "vpn_tunnel_vnet_0_to_onprem" {
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/site_to_site_ipsec_vpn"
 
-  depends_on = [module.vnet_0]
-}
+  address_space              = module.onprem.address_space
+  gateway_address            = module.onprem.public_ip_vpn_gateway
+  peer_name                  = "on-prem"
 
-resource "azurerm_local_network_gateway" "onprem" {
-  name                = "onprem"
-  resource_group_name = var.resource_group_name
-  location            = data.azurerm_resource_group.this.location
-  gateway_address     = module.onprem.public_ip_vpn_gateway
-  address_space       = module.onprem.address_space
-
-  depends_on = [module.onprem]
-}
-
-resource "azurerm_virtual_network_gateway_connection" "vpn_tunnel_vnet_0_to_onprem" {
-  name                = "vpn-tunnel-vnet-0-to-onprem"
-  location            = data.azurerm_resource_group.this.location
-  resource_group_name = var.resource_group_name
-
-  type                       = "IPsec"
+  resource_group_name        = var.resource_group_name
+  shared_key                 = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
   virtual_network_gateway_id = module.vnet_0.virtual_network_gateway_id
-  local_network_gateway_id   = azurerm_local_network_gateway.onprem.id
+  vnet_gw_conn_name          = "vpn-tunnel-vnet-0-to-onprem"
 
-  shared_key = "key1234!"
-
-  ipsec_policy {
-    dh_group         = "DHGroup1"
-    ike_encryption   = "AES256"
-    ike_integrity    = "SHA256"
-    ipsec_encryption = "AES256"
-    ipsec_integrity  = "SHA256"
-    pfs_group        = "PFS1"
-    sa_datasize      = 1024
-    sa_lifetime      = 86400
-  }
-
-  depends_on = [module.vnet_0]
+  depends_on = [module.vnet_0, module.onprem]
 }
 
-resource "azurerm_virtual_network_gateway_connection" "vpn_tunnel_onprem_to_vnet_0_" {
-  name                = "vpn-tunnel-onprem-to-vnet-0"
-  location            = data.azurerm_resource_group.this.location
-  resource_group_name = var.resource_group_name
+module "vpn_tunnel_onprem_to_vnet_0" {
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/site_to_site_ipsec_vpn"
 
-  type                       = "IPsec"
+  address_space              = module.vnet_0.address_space
+  gateway_address            = module.vnet_0.public_ip_vpn_gateway
+  peer_name                  = "vnet-0"
+
+  resource_group_name        = var.resource_group_name
+  shared_key                 = "4-v3ry-53cr37-1p53c-5h4r3d-k3y"
   virtual_network_gateway_id = module.onprem.virtual_network_gateway_id
-  local_network_gateway_id   = azurerm_local_network_gateway.vnet_0.id
+  vnet_gw_conn_name          = "vpn-tunnel-onprem-to-vnet-0"
 
-  shared_key = "key1234!"
-
-  ipsec_policy {
-    dh_group         = "DHGroup1"
-    ike_encryption   = "AES256"
-    ike_integrity    = "SHA256"
-    ipsec_encryption = "AES256"
-    ipsec_integrity  = "SHA256"
-    pfs_group        = "PFS1"
-    sa_datasize      = 1024
-    sa_lifetime      = 86400
-  }
-
-  depends_on = [module.onprem]
+  depends_on = [module.vnet_0, module.onprem]
 }
 
 # Virtual Machines

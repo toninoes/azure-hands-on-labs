@@ -31,7 +31,17 @@ TF_WORKSPACE=sandbox terraform apply -var-file=sandbox.tfvars
 
 It takes a long to apply configuration, because creating a gateway can often take 30 minutes or more.
 
-After that, you will obtain the following outputs to test connectivity between vm-0 and vm-onprem (which is simulating a server on your corporate network):
+When it finishes, we can see in Azure portal both VGW:
+![vgw](img/vgw.png)
+
+each one with a VPN connection in **Connected** status. VGW connection in vnet-0 side:
+![vnet-0-vpn-gateway-connection](img/vnet-0-vpn-gateway-connection.png)
+
+...and VGW connection in "onprem" side:
+![onprem-vpn-gateway-connection](img/onprem-vpn-gateway-connection.png)
+
+You will obtain the following outputs to test connectivity between vm-0 and vm-onprem (which is simulating a 
+server on your corporate network):
 ```bash
 Outputs:
 
