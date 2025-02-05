@@ -1,5 +1,5 @@
 # azure-hands-on-labs
-Some Azure hands-on labs done with Terraform, and using my ![modulodromo](https://github.com/toninoes/modulodromo) repository when is possible, XD.
+Some Azure hands-on labs done with Terraform, and using my [modulodromo](https://github.com/toninoes/modulodromo) repository when is possible, XD.
 
 ## Instructions to deploy labs
 You will need 2 inputs
