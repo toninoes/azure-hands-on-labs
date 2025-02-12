@@ -1,6 +1,6 @@
 variable "app_name" {
   default = "toninoes"
-  type = string
+  type    = string
 }
 
 variable "github_token" {
