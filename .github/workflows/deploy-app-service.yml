@@ -26,10 +26,10 @@ jobs:
 
     - name: Build and Push Docker image
       run: |
-        docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/helloworldapp:${{ github.sha }} .
-        docker tag ${{ secrets.ACR_LOGIN_SERVER }}/helloworldapp:${{ github.sha }} ${{ secrets.ACR_LOGIN_SERVER }}/helloworldapp:latest
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/helloworldapp:${{ github.sha }}
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/helloworldapp:latest
+        docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:${{ github.sha }} .
+        docker tag ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:${{ github.sha }} ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:latest
+        docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:${{ github.sha }}
+        docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:latest
 
     - name: Azure CLI Login
       uses: azure/login@v2
@@ -43,4 +43,4 @@ jobs:
       with:
         app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
         slot-name: production
-        images: ${{ secrets.ACR_LOGIN_SERVER }}/helloworldapp:${{ github.sha }}
+        images: ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:${{ github.sha }}
