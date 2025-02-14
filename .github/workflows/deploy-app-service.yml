@@ -17,6 +17,17 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
     - name: Login to Azure Container Registry
       uses: azure/docker-login@v2
       with:
@@ -44,3 +55,6 @@ jobs:
         app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
         slot-name: production
         images: ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_CONTAINER_NAME }}:${{ github.sha }}
+
+    - name: Azure CLI Logout
+      run: az logout

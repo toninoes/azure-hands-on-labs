@@ -35,3 +35,6 @@ terraform.rc
 # Ignore key pairs
 *.pem
 *.pub
+
+# Virtual envs
+venv/
