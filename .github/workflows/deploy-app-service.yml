@@ -4,24 +4,10 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: "Select the branch to deploy"
-        required: true
-        default: "main"
-        type: choice
 
 jobs:
   build-and-deploy:
     uses: toninoes/modulodromo/.github/workflows/deploy-docker-web-app.yml@main
     with:
-      acr_container_name: ${{ secrets.ACR_CONTAINER_NAME }}
-      acr_login_server: ${{ secrets.ACR_LOGIN_SERVER }}
-      acr_password: ${{ secrets.ACR_PASSWORD }}
-      acr_username: ${{ secrets.ACR_USERNAME }}
-      azure_client_id: ${{ secrets.AZURE_CLIENT_ID }}
-      azure_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      azure_tenant_id: ${{ secrets.AZURE_TENANT_ID }}
-      azure_webapp_name: ${{ secrets.AZURE_WEBAPP_NAME }}
       environment: sandbox
+    secrets: inherit
