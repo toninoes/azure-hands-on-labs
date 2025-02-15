@@ -8,10 +8,9 @@ on:
         type: string
         default: sandbox
       branch:
-        description: "Select the branch to deploy"
-        required: true
-        default: "main"
-        type: choice
+        description: "Which branch we want to deploy (default: main)."
+        type: string
+        default: main
 
 permissions:
   id-token: write
