@@ -1,19 +1,17 @@
 name: Build and Deploy to Azure App Service
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       environment:
         description: "Environment where to deploy."
         type: string
-        default: sanbox
+        default: sandbox
       branch:
-        description: "Which branch we want to deploy (default: main)."
-        type: string
-        default: main
+        description: "Select the branch to deploy"
+        required: true
+        default: "main"
+        type: choice
 
 permissions:
   id-token: write
