@@ -14,7 +14,7 @@ on:
 
 jobs:
   build-and-deploy:
-    uses: toninoes/modulodromo/.github/workflows/deploy-docker-web-app.yml
+    uses: toninoes/modulodromo/.github/workflows/deploy-docker-web-app.yml@main
     with:
       acr_container_name: ${{ secrets.ACR_CONTAINER_NAME }}
       acr_login_server: ${{ secrets.ACR_LOGIN_SERVER }}
