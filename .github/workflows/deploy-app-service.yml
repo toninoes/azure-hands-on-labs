@@ -4,6 +4,20 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment where to deploy."
+        type: string
+        default: sanbox
+      branch:
+        description: "Which branch we want to deploy (default: main)."
+        type: string
+        default: main
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   build-and-deploy:
