@@ -20,5 +20,6 @@ jobs:
   build-and-deploy:
     uses: toninoes/modulodromo/.github/workflows/deploy-docker-web-app.yml@main
     with:
-      environment: sandbox
+      environment: ${{ inputs.environment }}
+      branch: ${{ inputs.branch }}
     secrets: inherit
