@@ -1,5 +1,5 @@
 module "my_app" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/app_service_containerized"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/app_service_docker"
 
   app_name            = var.app_name
   resource_group_name = var.resource_group_name
