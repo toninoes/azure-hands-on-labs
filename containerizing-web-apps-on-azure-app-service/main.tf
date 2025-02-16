@@ -15,24 +15,5 @@ module "gha_access_azure" {
   resource_group_name  = var.resource_group_name
   role_definition_name = "Contributor"
 
-  github_extra_secrets = [
-    {
-      name  = "ACR_LOGIN_SERVER"
-      value = module.my_app.container_registry_login_server
-    },
-    {
-      name  = "ACR_USERNAME"
-      value = module.my_app.container_registry_admin_username
-    },
-    {
-      name  = "ACR_PASSWORD"
-      value = module.my_app.container_registry_admin_password
-    },
-    {
-      name  = "ACR_CONTAINER_NAME"
-      value = module.my_app.container_registry_name
-    },
-  ]
-
   depends_on = [module.my_app]
 }
