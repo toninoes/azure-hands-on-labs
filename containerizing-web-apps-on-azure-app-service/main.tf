@@ -29,10 +29,6 @@ module "gha_access_azure" {
       value = module.my_app.container_registry_admin_password
     },
     {
-      name  = "AZURE_WEBAPP_NAME"
-      value = module.my_app.web_app_name
-    },
-    {
       name  = "ACR_CONTAINER_NAME"
       value = module.my_app.container_registry_name
     },
