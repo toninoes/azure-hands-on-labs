@@ -18,6 +18,5 @@ jobs:
     with:
       azure_container_registry: "toninoes"
       azure_webapp_name: "toninoes-app"
-      environment: ${{ inputs.environment }}
       branch: ${{ inputs.branch }}
     secrets: inherit
