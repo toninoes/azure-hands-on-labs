@@ -5,8 +5,12 @@ on:
     inputs:
       environment:
         description: "Environment where to deploy."
-        type: string
-        default: sandbox
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - production
+          - staging
       branch:
         description: "Which branch we want to deploy (default: main)."
         type: string
