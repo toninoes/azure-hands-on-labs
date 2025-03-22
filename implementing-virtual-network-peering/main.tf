@@ -1,5 +1,5 @@
 module "vnet_0" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_network"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-network"
 
   address_space       = ["10.0.0.0/16"]
   resource_group_name = var.resource_group_name
@@ -18,7 +18,7 @@ module "vnet_0" {
 }
 
 module "vnet_1" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_network"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-network"
 
   address_space       = ["10.1.0.0/16"]
   resource_group_name = var.resource_group_name
@@ -53,7 +53,7 @@ resource "azurerm_virtual_network_peering" "vnet_1_to_vnet_0" {
 
 # Virtual Machines
 module "vm_0" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_machine"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-machine"
 
   admin_username       = var.admin_username
   name                 = "vm-0"
@@ -66,7 +66,7 @@ module "vm_0" {
 }
 
 module "vm_1" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_machine"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-machine"
 
   admin_username       = var.admin_username
   name                 = "vm-1"

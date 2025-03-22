@@ -1,5 +1,5 @@
 module "vnet_0" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_network"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-network"
 
   address_space       = ["10.0.0.0/16"]
   resource_group_name = var.resource_group_name
@@ -15,7 +15,7 @@ module "vnet_0" {
 }
 
 module "onprem" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_network"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-network"
 
   address_space       = ["10.1.0.0/16"]
   resource_group_name = var.resource_group_name
@@ -32,7 +32,7 @@ module "onprem" {
 
 # VGW connections
 module "vpn_tunnel_vnet_0_to_onprem" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/site_to_site_ipsec_vpn"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/site-to-site-ipsec-vpn"
 
   address_space              = module.onprem.address_space
   gateway_address            = module.onprem.public_ip_vpn_gateway
@@ -47,7 +47,7 @@ module "vpn_tunnel_vnet_0_to_onprem" {
 }
 
 module "vpn_tunnel_onprem_to_vnet_0" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/site_to_site_ipsec_vpn"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/site-to-site-ipsec-vpn"
 
   address_space              = module.vnet_0.address_space
   gateway_address            = module.vnet_0.public_ip_vpn_gateway
@@ -63,7 +63,7 @@ module "vpn_tunnel_onprem_to_vnet_0" {
 
 # Virtual Machines
 module "vm_0" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_machine"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-machine"
 
   admin_username       = var.admin_username
   name                 = "vm-0"
@@ -76,7 +76,7 @@ module "vm_0" {
 }
 
 module "vm_onprem" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual_machine"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/virtual-machine"
 
   admin_username       = var.admin_username
   name                 = "vm-onprem"

@@ -1,5 +1,5 @@
 module "my_app" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/app_service_docker"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/app-service-docker"
 
   app_name            = var.app_name
   resource_group_name = var.resource_group_name
@@ -7,7 +7,7 @@ module "my_app" {
 }
 
 module "gha_access_azure" {
-  source = "git::git@github.com:toninoes/modulodromo.git//azure/github_actions_access_to_azure"
+  source = "git::git@github.com:toninoes/modulodromo.git//azure/github-actions-access-to-azure"
 
   app_display_name     = var.app_name
   github_repository    = "azure-hands-on-labs"
