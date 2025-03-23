@@ -19,8 +19,8 @@ module "vnet_0" {
 module "agw" {
   source = "git::git@github.com:toninoes/modulodromo.git//azure/application-gateway"
 
-  name                = "myappgw"
-  resource_group_name = var.resource_group_name
+  name                                  = "myappgw"
+  resource_group_name                   = var.resource_group_name
   frontend_ip_configuration_public_name = var.frontend_ip_configuration_public_name
 
   backend_address_pools = [
