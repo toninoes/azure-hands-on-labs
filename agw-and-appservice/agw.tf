@@ -28,9 +28,18 @@ resource "azurerm_application_gateway" "this" {
     port = 443
   }
 
+  # Whizlabs no me permiten crear "User Assigned Managed Identity"
+  # identity {
+  #   type = "UserAssigned"
+  #   identity_ids = [azurerm_user_assigned_identity.this.id]
+  # }
+
   ssl_certificate {
     name                = "toninoesEs"
-    key_vault_secret_id = azurerm_key_vault_certificate.this.secret_id
+    #key_vault_secret_id = azurerm_key_vault_certificate.this.secret_id
+    # No lo puedo hacer con el key-vault porque los sandbox de Whizlabs no me permiten crear "User Assigned Managed Identity"
+    data     = filebase64("${path.module}/cert/certificado.pfx")
+    password = trimspace(file("${path.module}/cert/pass.txt"))
   }
 
   gateway_ip_configuration {
@@ -73,14 +82,4 @@ resource "azurerm_application_gateway" "this" {
     priority                   = 1
     rule_type                  = "Basic"
   }
-
-  identity {
-    type = "UserAssigned"
-  }
-}
-
-resource "azurerm_role_assignment" "this" {
-  scope                = azurerm_key_vault.this.id
-  role_definition_name = "Key Vault Secrets User"
-  principal_id         = azurerm_application_gateway.this.identity[0].principal_id
 }
