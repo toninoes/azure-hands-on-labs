@@ -3,7 +3,7 @@ resource "azurerm_service_plan" "this" {
   location            = data.azurerm_resource_group.this.location
   os_type             = "Linux"
   resource_group_name = var.resource_group_name
-  sku_name            = "S1"
+  sku_name            = "B1"
   tags                = local.tags
 }
 
