@@ -6,11 +6,6 @@ resource "azurerm_public_ip" "this" {
   tags                = local.tags
 }
 
-data "azurerm_network_interface" "this" {
-  name                = azurerm_private_endpoint.this.network_interface[0].name
-  resource_group_name = var.resource_group_name
-}
-
 resource "azurerm_application_gateway" "this" {
   name                = "MiAppGateway"
   location            = data.azurerm_resource_group.this.location
