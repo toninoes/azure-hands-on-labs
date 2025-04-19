@@ -24,8 +24,13 @@ resource "azurerm_application_gateway" "this" {
   }
 
   frontend_port {
-    name = "HttpPort"
-    port = 80
+    name = "HttpsPort"
+    port = 443
+  }
+
+  ssl_certificate {
+    name                = "toninoesEs"
+    key_vault_secret_id = azurerm_key_vault_certificate.this.secret_id
   }
 
   gateway_ip_configuration {
@@ -53,18 +58,29 @@ resource "azurerm_application_gateway" "this" {
   }
 
   http_listener {
-    name                           = "MiHttpListener"
+    name                           = "MiHttpsListener"
     frontend_ip_configuration_name = "MiFrontendIP"
-    frontend_port_name             = "HttpPort"
-    protocol                       = "Http"
+    frontend_port_name             = "HttpsPort"
+    ssl_certificate_name           = "toninoesEs"
+    protocol                       = "Https"
   }
 
   request_routing_rule {
     name                       = "MiRequestRoutingRule"
     backend_address_pool_name  = "MiBackendPool"
     backend_http_settings_name = "MiHttpSettings"
-    http_listener_name         = "MiHttpListener"
+    http_listener_name         = "MiHttpsListener"
     priority                   = 1
     rule_type                  = "Basic"
   }
+
+  identity {
+    type = "UserAssigned"
+  }
+}
+
+resource "azurerm_role_assignment" "this" {
+  scope                = azurerm_key_vault.this.id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_application_gateway.this.identity.principal_id
 }
